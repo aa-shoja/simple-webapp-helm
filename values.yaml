@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: 192.168.75.131:5001/simple-webapp-python
+  tag: v1
+  pullPolicy: Always
+  insecureRegistry: true
+
+service:
+  name: myapp
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  annotations:
+          nginx.ingress.kubernetes.io/rewrite-target: /
+  path: /
+  hosts:
+    - host: chart-example.local
+      paths: ["/"]
+
+nodeSelector: {}
+tolerations: []
