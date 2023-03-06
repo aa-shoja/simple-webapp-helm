@@ -4,6 +4,8 @@ metadata:
   name: {{ include "myapp.fullname" . }}
   labels:
     app: {{ include "myapp.name" . }}
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:

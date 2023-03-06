@@ -1,14 +1,13 @@
 replicaCount: 1
 
 image:
-  repository: 192.168.75.131:5001/simple-webapp-python
+  repository: amashk/simple-webapp-python-alpine
   tag: v1
   pullPolicy: Always
-  insecureRegistry: true
 
 service:
   name: myapp
-  type: ClusterIP
+  type: NodePort
 
 ingress:
   enabled: true
@@ -16,8 +15,10 @@ ingress:
           nginx.ingress.kubernetes.io/rewrite-target: /
   path: /
   hosts:
-    - host: chart-example.local
+    - host: simple-webapp.local
       paths: ["/"]
 
 nodeSelector: {}
 tolerations: []
+
+appName: myapp
